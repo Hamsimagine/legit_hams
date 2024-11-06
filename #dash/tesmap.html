@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinate Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* Set the size of the map container */
+        #map-container {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Map container -->
+    <div id="map-container"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Function to initialize and add the map
+        function initMap() {
+            // Create a map centered at an initial location
+            var map = L.map('map-container').setView([-8.028490, 110.678628], 10);
+
+            // Add a base map layer from OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Array of coordinates
+            var coordinates = [
+                [-8.066478131539242, 110.77047374093333], // Coordinate 1
+                [-7.9908989438705165, 110.58676133650648] // Coordinate 2
+            ];
+
+            // Loop through the coordinates and add markers to the map
+            for (var i = 0; i < coordinates.length; i++) {
+                L.marker(coordinates[i]).addTo(map);
+            }
+        }
+
+        // Call the initMap function when the page has loaded
+        window.onload = initMap;
+    </script>
+
+</body>
+</html>

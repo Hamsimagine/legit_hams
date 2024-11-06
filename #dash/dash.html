@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.4.0/justgage.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body >
+    <header>
+        <nav class="flex items-center justify-between text-center flex-wrap bg-blue-500 p-6">
+            <div class="flex items-center">
+                <button id="menuButton" class="flex items-center px-3 py-2 border rounded text-blue-200 border-blue-400 hover:text-white hover:border-white">
+                  <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0zM0 9h20v2H0zM0 15h20v2H0z"/></svg>
+                </button>
+              
+                <div id="menu" class="hidden ml-4 transition-transform duration-500 ease-in-out transform">
+                  <!-- Isi menu di sini -->
+                    <ul class="list-none">
+                      <li><a href="index.html" class="text-blue-200 hover:text-white">Panel Control 1</a></li>
+                      <li><a href="in1.html" class="text-blue-200 hover:text-white">Panel Control 2</a></li>
+                      <li><a href="in_2.html" class="text-blue-200 hover:text-white">Panel Control 3</a></li>
+                    </ul>
+                  </div>
+                </div>
+            <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <span class="font-semibold text-xl tracking-tight">Dashboard Tes</span>
+            </div>
+
+          <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+          <div class="text-sm lg:flex-grow">
+            <a href="#Daya" class="block mt-2 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">Daya</a>
+            <a href="#volt" class="block mt-2 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">Voltase</a>
+            <a href="#Flow" class="block mt-2 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">Flow Meter</a>
+            <a href="#control" class="block mt-2 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">Kontrol Pump</a>
+          </div>
+          </div>
+        </nav>
+    </header>
+
+    
+    <script src="path/pump.js"></script>
+    <script src="path/gauge.js"></script>
+    <script src="path/daya.js"></script>
+    <script src="path/volt.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="path/jss.js"></script>
+    <script src="path/flow.js"></script>
+    <script src="path/freq.js"></script>
+</body>
+</html>
+
+    

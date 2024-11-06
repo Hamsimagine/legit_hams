@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Panel</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.4.0/justgage.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet"></link>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+</head>
+
+<body >
+    <header>
+        <nav class="flex items-center justify-between text-center flex-wrap bg-blue-500 p-6">
+            <div class="flex items-center">
+                <button id="menuButton" class="flex items-center px-3 py-2 border rounded text-blue-200 border-blue-400 hover:text-white hover:border-white">
+                  <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0zM0 9h20v2H0zM0 15h20v2H0z"/></svg>
+                </button>
+              
+                <div id="menu" class="hidden ml-4 transition-transform duration-500 ease-in-out transform">
+                  <!-- Isi menu di sini -->
+                    <ul class="list-none">
+                      <li><a href="index.html" class="text-blue-200 hover:text-white">Panel Control 1</a></li>
+                      <li><a href="in_2.html" class="text-blue-200 hover:text-white">Panel Control 3</a></li>
+                    </ul>
+                  </div>
+                </div>
+            <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <span class="font-semibold text-xl tracking-tight">Panel Control 2</span>
+            </div>
+
+          <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+          <div class="text-sm lg:flex-grow">
+            <a href="#Daya" class="block mt-2 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">Daya</a>
+            <a href="#volt" class="block mt-2 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">Voltase</a>
+            <a href="#Flow" class="block mt-2 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">Flow Meter</a>
+            <a href="#control" class="block mt-2 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">Kontrol Pump</a>
+          </div>
+          </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="bg-white rounded-xl shadow-xl p-8">
+            <!-- Grid untuk Daya, Voltase, Energi, Frekuensi-->
+            <section id="Daya">
+        <div class="grid grid-cols-3 gap-4 mb-2 text-center">
+            <div class="bg-yellow-100 p-2 rounded-lg">
+              <h2 class="text-lg font-bold mb-2">Daya 1 </h2>
+              <p class="text-3xl font-bold text-yellow-800">25 A</p>
+            </div>
+            <div class="bg-green-100 p-2 rounded-lg">
+              <h2 class="text-lg font-bold mb-2">Daya 2 </h2>
+              <p class="text-3xl font-bold text-yellow-800">22 A</p>
+            </div>
+            <div class="bg-red-100 p-2 rounded-lg">
+              <h2 class="text-lg font-bold mb-2">Daya 3 </h2>
+              <p class="text-3xl font-bold text-yellow-800">28 A</p>
+            </div>
+        </div>
+    </section>
+          <div class="grid grid-cols-3 gap-4 mb-2 text-center">
+            <canvas id="myChart"></canvas>
+          </div>
+          <section id="volt">
+        <div class="grid grid-cols-3 gap-4 mb-2 text-center">
+            <div class="bg-yellow-100 p-4 rounded-lg">
+                <h2 class="text-lg font-bold mb-2">Voltase 1 </h2>
+                <p class="text-3xl font-bold text-yellow-800">320 V</p>
+            </div>
+            <div class="bg-green-100 p-4 rounded-lg">
+                <h2 class="text-lg font-bold mb-2">Voltase 2 </h2>
+                <p class="text-3xl font-bold text-yellow-800">310 V</p>
+            </div>
+            <div class="bg-red-100 p-4 rounded-lg">
+                <h2 class="text-lg font-bold mb-2">Voltase 3 </h2>
+                <p class="text-3xl font-bold text-yellow-800">315 V</p>
+            </div>
+        </div>
+    </section>
+            <div class="grid grid-cols-3 gap-4 mb-2 text-center">
+                <canvas id="myChartV"></canvas>
+            </div>
+            <div class="grid grid-cols-3 gap-4 mb-2 text-center">
+            <div class="bg-indigo-100 p-4 rounded-lg">
+                <h2 class="text-lg font-bold mb-2">Total Energi</h2>
+                <p class="text-3xl font-bold text-indigo-800">440 kWh</p>
+            </div>
+            <!-- Suhu Panel -->
+            <div class="bg-blue-100 p-4 rounded-lg mb-2">
+                <h2 class="text-lg font-bold mb-2">Suhu Panel</h2>
+                <p class="text-3xl font-bold text-blue-800">28°C</p>
+            </div>
+            <div class="bg-red-100 p-4 rounded-lg mb-2">
+                <h2 class="text-lg font-bold mb-2">Pemakaian Hari Ini</h2>
+                <p class="text-3xl font-bold text-pink-800">42300 kWh</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4 mb-2 text-center">
+
+            <div class="bg-pink-100 p-4 rounded-lg">
+                <h2 class="text-lg font-bold mb-2">Frekuensi</h2>
+                <p class="text-3xl font-bold text-pink-800">42 Hz</p>
+                <canvas id="linechart" width="400" height="200"></canvas>
+            </div>
+            <div class="bg-pink-100 p-4 rounded-lg">
+                <h2 class="text-lg font-bold mb-2">Power Factor</h2>
+                <p class="text-3xl font-bold text-pink-800">0.8 Cos-phi</p>
+                <div id="gauge2" class="gauge-container"></div>
+            </div>  
+            <section id="Flow">
+            <div class="bg-pink-100 p-4 rounded-lg">
+                <h2 class="text-lg font-bold mb-2">Flow Meter</h2>
+                <p class="text-3xl font-bold text-pink-800">0.8 l/d</p>
+                <canvas id="lineChart" class="mt-2 mb-2"></canvas>
+            </div>  
+        </section>
+        </div>
+        <div class="container mx-auto px-2 pt-4 pb-8">
+            <div class="mx-auto w-full md:w-1/2 text-center">
+            <!-- Sensor Tekanan (Pressure) -->
+            <div class="bg-green-100 p-4 rounded-lg mb-4">
+                <h2 class="text-lg font-bold mb-2">Sensor 2 (Pressure)</h2>
+                <div id="gauge"></div>
+            </div>
+            </div>
+            </div>
+
+        <section id="control">
+            <!-- Tombol Kontrol -->
+            <div class="mb-4 text-center">
+            <h2 class="text-xl mb-4">Water Pump</h2>
+            <input type="range" min="0" max="10" value="0.10" class="slider" id="pumpRange">
+            </div>
+            <div class="mr-2 text-center">Kontrol Pompa:</div>
+            <div class="flex justify-center text-center space-x-4">
+            <form id="pompaForm" class="mb-4">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" name="pompa_status" value="On" id="onButton">
+                On
+            </button>
+            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" name="pompa_status" value="Off" id="offButton">
+                Off
+            </button>
+            </form>
+            </div>
+        </section>
+
+            <script src="src_in1/pump.js"></script>
+            <script src="src_in1/gauge.js"></script>
+            <script src="src_in1/daya.js"></script>
+            <script src="src_in1/volt.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="src_in1/jss.js"></script>
+            <script src="src_in1/flow.js"></script>
+            <script src="src_in1/freq.js"></script>
+            
+    </main>
+</body>
+</html>

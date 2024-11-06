@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voltase dan Ampere Bar Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet"></link>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+</head>
+<body>
+    <div class="grid grid-cols-3 gap-4 mb-2 text-center">
+    <canvas id="voltageAmpereChart" width="400" height="200"></canvas>
+    <script>
+        // Daftarkan plugin datalabels
+        Chart.register(ChartDataLabels);
+
+        var ctx = document.getElementById('voltageAmpereChart').getContext('2d');
+
+        // Gradien warna untuk voltase
+        var voltageGradient = ctx.createLinearGradient(0, 0, 0, 400);
+        voltageGradient.addColorStop(0, 'green');
+        voltageGradient.addColorStop(0.5, 'orange');
+        voltageGradient.addColorStop(1, 'red');
+
+        // Gradien warna untuk ampere
+        var ampereGradient = ctx.createLinearGradient(0, 0, 0, 400);
+        ampereGradient.addColorStop(0, 'green');
+        ampereGradient.addColorStop(0.5, 'yellow');
+        ampereGradient.addColorStop(1, 'red');
+
+        var voltageAmpereChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Voltase', 'Ampere'],
+                datasets: [
+                    {
+                        label: 'Voltase',
+                        data: [400, 0],
+                        backgroundColor: voltageGradient,
+                        barThickness: 50 // Atur ketebalan bar sesuai kebutuhan
+                    },
+                    {
+                        label: 'Ampere',
+                        data: [0, 350],
+                        backgroundColor: ampereGradient,
+                        barThickness: 50 // Atur ketebalan bar sesuai kebutuhan
+                    }
+                ]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false // Menonaktifkan legend
+                    },
+                    datalabels: {
+                        display: true,
+                        color: '#000',
+                        align: 'top',
+                        anchor: 'end',
+                        formatter: function(value) {
+                            return value;
+                        },
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        categoryPercentage: 0.6, // Atur jarak antar bar dengan mengubah kategori
+                        barPercentage: 0.8, // Atur jarak antar bar dengan mengubah persentase bar
+                        ticks: {
+                            autoSkip: false, // Menampilkan semua label pada sumbu X
+                            callback: function(value, index, values) {
+                                return value; // Menampilkan label
+                            }
+                        },
+                        grid: {
+                            display: false, // Menghilangkan garis grid pada sumbu X
+                            borderDash: [5, 5]
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 450, // Set batas maksimum sumbu Y menjadi 450
+                        ticks: {
+                            display: false // Menonaktifkan tampilan nilai pada sumbu Y
+                        },
+                        grid: {
+                            display: true, // Pastikan grid ditampilkan
+                            borderDash: [5, 5] // Menambahkan garis putus-putus pada grid
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    </div>
+</body>
+</html>

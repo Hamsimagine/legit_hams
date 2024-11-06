@@ -1,0 +1,4 @@
+/* Tambahkan CSS untuk efek membesar */
+#menu.expanded {
+  width: calc(100% + 25vw);
+}
